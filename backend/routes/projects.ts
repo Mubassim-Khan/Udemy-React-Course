@@ -49,7 +49,7 @@ router.put("/projects/:id", (req: Request, res: Response) => {
   if (!id) {
     res.status(400).json({
       status: "error",
-      message: "Must include ID",
+      message: "Must include a valid ID",
     });
     return;
   }
@@ -92,5 +92,44 @@ router.put("/projects/:id", (req: Request, res: Response) => {
 });
 
 // DELETE - Delete a project
+router.delete("/projects/:id", (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  if (!id) {
+    res.status(400).json({
+      status: "error",
+      message: "Must include a valid ID",
+    });
+    return;
+  }
+
+  try {
+    const projectIndex = projects.findIndex((p) => p.id === parseInt(id));
+
+    if (projectIndex === -1) {
+      res.status(404).json({
+        status: "error",
+        message: "Project not found",
+      });
+      return;
+    }
+
+    const deletedProject = projects.splice(projectIndex, 1)[0];
+    saveProjects(projects);
+
+    res.status(200).json({
+      status: "success",
+      message: "Project deleted successfully",
+      project: deletedProject,
+    });
+  } catch (error: any) {
+    console.error(error);
+    res.status(500).json({
+      status: "error",
+      error: error.message,
+      message: "Something went wrong.",
+    });
+  }
+});
 
 module.exports = router;
