@@ -1,7 +1,8 @@
 import express, { Request, Response } from "express";
-import { projects } from "../projects";
+import { loadProjects, saveProjects } from "../lib/projectSave";
 
 const router = express.Router();
+const projects = loadProjects();
 
 // GET - Fetch all projects
 router.get("/projects", (req: Request, res: Response) => {
@@ -23,7 +24,8 @@ router.post("/projects", (req: Request, res: Response) => {
   try {
     const newProject = { id: projects.length + 1, name: req.body.name };
     projects.push(newProject);
-
+    saveProjects(projects);
+    
     res.status(201).json({
       status: "success",
       message: "Project add successfully",
