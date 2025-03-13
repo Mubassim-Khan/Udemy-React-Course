@@ -32,7 +32,7 @@ router.post("/projects", (req: Request, res: Response) => {
       project: newProject,
     });
   } catch (error: any) {
-    console.error(error);
+    console.log(error);
     res.status(500).json({
       status: "error",
       error: error.message,
@@ -82,7 +82,7 @@ router.put("/projects/:id", (req: Request, res: Response) => {
       project: projects[projectIndex],
     });
   } catch (error: any) {
-    console.error(error);
+    console.log(error);
     res.status(500).json({
       status: "error",
       error: error.message,
@@ -123,7 +123,23 @@ router.delete("/projects/:id", (req: Request, res: Response) => {
       project: deletedProject,
     });
   } catch (error: any) {
-    console.error(error);
+    console.log(error);
+    res.status(500).json({
+      status: "error",
+      error: error.message,
+      message: "Something went wrong.",
+    });
+  }
+});
+
+// Count - Count total projects
+router.get("/projects/count", (req: Request, res: Response) => {
+  try {
+    const totalProjects = projects.length;
+
+    res.status(200).json({ status: "success", totalProjects });
+  } catch (error: any) {
+    console.log(error);
     res.status(500).json({
       status: "error",
       error: error.message,
