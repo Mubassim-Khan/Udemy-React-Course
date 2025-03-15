@@ -1,5 +1,19 @@
-import { createContext } from 'react'
+import { createContext } from "react";
 
-const projectContext = createContext();
+export interface Project {
+  id: number;
+  name: string;
+}
 
-export default projectContext;
+interface ProjectContextType {
+  projects: Project[];
+  addProject: (name: string) => void;
+  editProject: (updatedProject: Project) => void;
+  deleteProject: (id: number) => void;
+  fetchProjects: () => void;
+  countProjects: () => void;
+}
+
+const ProjectContext = createContext<ProjectContextType | null>(null);
+
+export default ProjectContext;
