@@ -5,7 +5,8 @@ export interface Project {
   name: string;
 }
 
-interface ProjectContextType {
+export interface ProjectContextType {
+  loading: boolean;
   projects: Project[];
   addProject: (name: string) => void;
   editProject: (updatedProject: Project) => void;
