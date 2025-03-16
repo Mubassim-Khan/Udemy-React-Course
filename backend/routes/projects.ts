@@ -21,6 +21,16 @@ router.post("/projects", (req: Request, res: Response) => {
     return;
   }
 
+  const existingProject = projects.find(
+    (p) => p.name.toLowerCase() === name.toLowerCase()
+  );
+  if (existingProject) {
+    res
+      .status(400)
+      .json({ status: "error", name: "Project name must be unique" });
+    return;
+  }
+
   try {
     const newProject = { id: projects.length + 1, name: req.body.name };
     projects.push(newProject);
@@ -58,6 +68,17 @@ router.put("/projects/:id", (req: Request, res: Response) => {
     res.status(400).json({
       status: "error",
       message: "Project name must be at least 3 characters long",
+    });
+    return;
+  }
+
+  const duplicateProject = projects.find(
+    (p) => p.name.toLowerCase() === name.toLowerCase() && p.id !== Number(id)
+  );
+  if (duplicateProject) {
+    res.status(400).json({
+      status: "error",
+      message: "Project name must be unique",
     });
     return;
   }

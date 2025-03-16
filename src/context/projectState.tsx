@@ -52,7 +52,7 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
             const newProject = await response.json();
 
             if (newProject.status !== "success") {
-                toast.error("Failed to add project");
+                toast.error(newProject.message);
                 console.error("Unexpected API response:", newProject);
                 return;
             }
@@ -76,7 +76,7 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
             const updatedData = await response.json();
 
             if (updatedData.status !== "success") {
-                toast.error("Failed to update project");
+                toast.error(updatedData.message);
                 console.error("Unexpected API response:", updatedData);
                 return;
             }
