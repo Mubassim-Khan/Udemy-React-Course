@@ -27,7 +27,7 @@ router.post("/projects", (req: Request, res: Response) => {
   if (existingProject) {
     res
       .status(400)
-      .json({ status: "error", name: "Project name must be unique" });
+      .json({ status: "error", message: "Project name must be unique" });
     return;
   }
 
