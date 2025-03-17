@@ -22,7 +22,7 @@ export const Projects = () => {
         <div className="p-0.5 m-5 text-xl">
             <div className="items-center my-auto mx-auto mt-5 mb-5 p-5">
                 {loading ? <Spinner /> : projects.length === 0 ? "No projects to display, Please add a note." : null}
-                <div className="items-center mt-3 mb-5 fixed">
+                <div className="items-center mt-3 mb-5">
                 <AddModal addProject={addProject} />
                 </div>
             </div>

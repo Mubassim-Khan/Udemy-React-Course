@@ -16,7 +16,6 @@ export const AddModal: FC<AddModalProps> = ({ addProject }) => {
             addProject(name);
             setIsOpen(false);
             setName("");
-            // toast.success("Project Added")
         } catch (error) {
             toast.error("Request timed out")
         }

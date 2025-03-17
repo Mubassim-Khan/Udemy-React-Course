@@ -6,4 +6,9 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   base: "/Udemy-React-Course/",
+  server: {
+    watch: {
+      ignored: ['**/backend/**'],
+    },
+  },
 });

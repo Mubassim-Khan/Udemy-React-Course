@@ -57,7 +57,9 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
                 return;
             }
 
-            setProjects([...projects, newProject]);
+            setProjects((prevProjects => [...prevProjects, newProject]));
+            toast.success("Project Added")
+            fetchProjects();
         } catch (error) {
             console.log("Error adding project: " + error);
         }
@@ -86,7 +88,8 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
                     project.id === updatedData.id ? updatedData : project
                 ))
             ))
-
+            // toast.success("Project Edited")
+            // fetchProjects();
         } catch (error) {
             console.log("Error updating project: " + error)
         }
@@ -111,7 +114,8 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
             }
 
             setProjects(newProjects)
-            console.log(`Deleted Project: ${deletedProject.name}`)
+            toast.success(`Project "${deletedProject.project.name}" Deleted`)
+            // console.log(`Deleted Project: ${deletedProject.project.name}`)
         } catch (error) {
             console.log("Error deleting project: " + error)
         }

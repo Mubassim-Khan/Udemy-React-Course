@@ -15,7 +15,6 @@ export const DeleteModal: FC<DeleteModalProps> = ({ deleteProject, projectId }) 
             e.preventDefault();
             deleteProject(projectId);
             setIsOpen(false);
-            toast.success("Project Deleted")
         } catch (error) {
             toast.error("Request timed out")
         }
