@@ -32,7 +32,8 @@ router.post("/projects", (req: Request, res: Response) => {
   }
 
   try {
-    const newProject = { id: projects.length + 1, name: req.body.name };
+    const newId = projects.length > 0 ? Math.max(...projects.map(p => p.id)) + 1 : 1;
+    const newProject = { id: newId, name: req.body.name };
     projects.push(newProject);
     saveProjects(projects);
 

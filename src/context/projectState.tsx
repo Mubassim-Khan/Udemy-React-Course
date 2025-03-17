@@ -57,7 +57,7 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
                 return;
             }
 
-            setProjects((prevProjects => [...prevProjects, newProject]));
+            setProjects([...projects, newProject.project]);
             toast.success("Project Added")
             fetchProjects();
         } catch (error) {
