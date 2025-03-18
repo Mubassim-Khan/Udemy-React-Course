@@ -35,7 +35,7 @@ export const Projects = () => {
     return (
         <div className="p-0.5 m-5 text-xl">
             <div className="flex flex-col items-center justify-center mt-10">
-                <h2 className="text-4xl font-semibold text-gray-800 mb-5">Manage Your Projects</h2>
+                <h2 className="text-4xl font-semibold text-gray-800 mb-5">ProjManager (CRUD Application)</h2>
                 <ProjectCount />
                 <button
                     onClick={handleAddProject}
