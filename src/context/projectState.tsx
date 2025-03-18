@@ -9,7 +9,7 @@ interface ProjectProviderProps {
 }
 
 export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
-    const hostURL = import.meta.env.VITE_HOST_URL || "http://localhost:8080";
+    // const hostURL = import.meta.env.VITE_HOST_URL || "http://localhost:8080";
     const [projects, setProjects] = useState<Project[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -17,7 +17,7 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
     const fetchProjects = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`${hostURL}/api/projects`, {
+            const response = await fetch(`/api/projects`, {
                 method: 'GET',
                 headers: {
                     "Content-Type": 'application/json'
@@ -41,7 +41,7 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
     // Add Project
     const addProject = async (name: string) => {
         try {
-            const response = await fetch(`${hostURL}/api/projects`, {
+            const response = await fetch(`/api/projects`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": 'application/json'
@@ -66,7 +66,7 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
     // Edit Project
     const editProject = async (updatedProject: Project) => {
         try {
-            const response = await fetch(`${hostURL}/api/projects/${updatedProject.id}`, {
+            const response = await fetch(`/api/projects/${updatedProject.id}`, {
                 method: 'PUT',
                 headers: {
                     "Content-Type": 'application/json'
@@ -97,7 +97,7 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
     // Delete Project
     const deleteProject = async (id: number) => {
         try {
-            const response = await fetch(`${hostURL}/api/projects/${id}`, {
+            const response = await fetch(`/api/projects/${id}`, {
                 method: 'DELETE',
                 headers: {
                     "Content-Type": 'application/json'
@@ -123,7 +123,7 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
     // Count total projects
     const countProjects = async (): Promise<number | null> => {
         try {
-            const response = await fetch(`${hostURL}/api/projects/count`, {
+            const response = await fetch(`/api/projects/count`, {
                 method: 'GET',
                 headers: {
                     "Content-Type": 'application/json'
@@ -142,8 +142,6 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
             return null;
         }
     };
-
-
 
     return (
         <ProjectContext.Provider value={{ loading, projects, fetchProjects, addProject, editProject, deleteProject, countProjects }}>

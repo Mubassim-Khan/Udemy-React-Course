@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index"
+    "start": "node index.ts",
+    "dev": "nodemon index.ts"
   },
   "author": "",
   "license": "ISC",

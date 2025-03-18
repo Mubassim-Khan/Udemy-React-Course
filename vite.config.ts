@@ -8,7 +8,14 @@ export default defineConfig({
   base: "/Udemy-React-Course/",
   server: {
     watch: {
-      ignored: ['**/backend/**'],
+      ignored: ["**/backend/**"],
+    },
+    proxy: {
+      "/api": {
+        target: "http://localhost:8080", 
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
 });
