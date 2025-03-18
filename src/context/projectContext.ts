@@ -12,7 +12,7 @@ export interface ProjectContextType {
   editProject: (updatedProject: Project) => void;
   deleteProject: (id: number) => void;
   fetchProjects: () => void;
-  countProjects: () => void;
+  countProjects: () => Promise<number | null>;
 }
 
 const ProjectContext = createContext<ProjectContextType | null>(null);

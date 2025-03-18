@@ -11,7 +11,6 @@ interface ProjectProviderProps {
 export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
     const hostURL = import.meta.env.VITE_HOST_URL || "http://localhost:8080";
     const [projects, setProjects] = useState<Project[]>([]);
-    const [projectCount, setProjectCount] = useState<Number>(0);
     const [loading, setLoading] = useState(true);
 
     // Fetch Projects
@@ -122,7 +121,7 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
     }
 
     // Count total projects
-    const countProjects = async () => {
+    const countProjects = async (): Promise<number | null> => {
         try {
             const response = await fetch(`${hostURL}/api/projects/count`, {
                 method: 'GET',
@@ -133,16 +132,17 @@ export const ProjectState: FC<ProjectProviderProps> = ({ children }) => {
             const json = await response.json();
 
             if (json.status !== "success") {
-                toast.error("Failed to delete project");
+                toast.error("Failed to count project");
                 console.error("Unexpected API response:", json);
-                return;
+                return null;
             }
-
-            setProjectCount(json.totalProjects);
+            return json.totalProjects;
         } catch (error) {
-            console.log("Error counting project: " + error)
+            console.error("Error counting project:", error);
+            return null;
         }
-    }
+    };
+
 
 
     return (

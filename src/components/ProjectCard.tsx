@@ -16,7 +16,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onEdit }) => 
     const { deleteProject } = context;
 
     return (
-        <div className="border p-4 flex justify-between items-center rounded-xl mb-5 shadow-lg">
+        <div className="bg-gray-100 border p-4 flex justify-between items-center rounded-xl mb-5 shadow-lg">
             <span className="text-black text-xl font-medium ml-2">{project.name}</span>
             <div className="flex items-center gap-4">
                 <DeleteModal deleteProject={deleteProject} projectId={project.id} />
