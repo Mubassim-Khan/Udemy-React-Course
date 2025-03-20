@@ -35,7 +35,7 @@ cd frontend && npm install
 4. Run the project locally:
 
 ```bash
-cd backend && npm start
+cd backend && npm run dev
 ```
 
 ```bash
