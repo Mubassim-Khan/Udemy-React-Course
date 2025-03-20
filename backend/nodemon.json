@@ -1,5 +1,0 @@
-{
-  "watch": ["index"],
-  "ignore": ["node_modules", "projects.json", "client"],
-  "ext": "js,json"
-}
