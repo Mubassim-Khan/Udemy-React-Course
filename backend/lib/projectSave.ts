@@ -1,10 +1,11 @@
 import fs from "fs";
 import path from "path";
 
-const projectsFile = path.resolve("./projects.json");
+const projectsFile = path.join(process.cwd(), "projects.json");
 
 // Load existing projects
 export const loadProjects = (): { id: number; name: string }[] => {
+  console.log(projectsFile);
   if (!fs.existsSync(projectsFile)) return [];
   const data = fs.readFileSync(projectsFile, "utf8");
   return JSON.parse(data);
