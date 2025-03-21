@@ -6,7 +6,10 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    { "src": "/(.*)", "dest": "dist/compiled/index.js" }
-  ]
+  "routes": [{ "src": "/(.*)", "dest": "dist/compiled/index.js" }],
+  "functions": {
+    "dist/compiled/lib/projectSave.js": {
+      "includeFiles": "projects.json"
+    }
+  }
 }
