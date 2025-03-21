@@ -10,6 +10,10 @@
     <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="vercel" />
 </div>
 
+## View live site
+
+[Visit Site](https://udemy-react-course-coral.vercel.app/)
+
 ## Getting Started
 
 To get started with this project, follow these steps:
